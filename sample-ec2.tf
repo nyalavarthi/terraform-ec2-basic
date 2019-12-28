@@ -4,20 +4,27 @@ provider "aws" {
   region = "eu-central-1"
 }
 
+
 data "aws_ami" "ubuntu" {
-  most_recent = true
+  executable_users = ["self"]
+  most_recent      = true
+  name_regex       = "^myami-\\d{3}"
+  owners           = ["self"]
 
   filter {
     name   = "name"
-    values = ["ami-0d03add87774b12c5"]
+    values = ["myami-*"]
+  }
+
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
   }
 
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-
-  owners = ["self"]
 }
 
 resource "aws_instance" "web" {
