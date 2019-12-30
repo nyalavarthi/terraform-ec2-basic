@@ -1,33 +1,28 @@
 # Create a new instance of the latest Ubuntu 14.04 on an
 # t2.micro node with an AWS Tag naming it "HelloWorld"
 provider "aws" {
-  region = "eu-central-1"
+  #region = "eu-central-1"
+  region  = "eu-west-2"
 }
 
 
 data "aws_ami" "ubuntu" {
-  executable_users = ["self"]
-  most_recent      = true
-  name_regex       = "Ubuntu Server 18.04 LTS (HVM)"
-  owners           = ["self"]
-/*
-  filter {
-    name   = "name"
-    values = ["ami-0c64dd618a49aeee8-*"]
-  }
+    most_recent = true
 
-  filter {
-    name   = "root-device-type"
-    values = ["ebs"]
-  }
+    filter {
+        name   = "name"
+        values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
+    }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  } */
-} 
+    filter {
+        name   = "virtualization-type"
+        values = ["hvm"]
+    }
+
+    owners = ["self"] # Canonical
+}
   
-data "aws_ami_ids" "ubuntu" {
+data "aws_ami_ids" "ubuntu-ids" {
   owners = ["self"]
 
   filter {
@@ -49,5 +44,9 @@ resource "aws_instance" "web" {
 }
 
 output "ami_ids" {
-  value = "${data.aws_ami_ids.ubuntu.*.ids}"
+  value = "${data.aws_ami_ids.ubuntu-ids.*.ids}"
+}
+
+output "image_id" {
+    value = "${data.aws_ami.ubuntu.id}"
 }
