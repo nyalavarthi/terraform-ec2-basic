@@ -19,12 +19,12 @@ data "aws_ami" "ubuntu" {
   filter {
     name   = "root-device-type"
     values = ["ebs"]
-  } */
+  }
 
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
-  }
+  } */
 } 
   
 data "aws_ami_ids" "ubuntu" {
