@@ -49,5 +49,5 @@ resource "aws_instance" "web" {
 }
 
 output "ami_ids" {
-  value = ["${aws_ami_ids.ubuntu.*.ids}"]
+  value = "${data.aws_ami_ids.ubuntu.*.ids}
 }
