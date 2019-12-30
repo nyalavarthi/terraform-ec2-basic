@@ -26,9 +26,19 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 } */
+  
+data "aws_ami_ids" "ubuntu" {
+  owners = ["self"]
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/ubuntu-*-*-amd64-server-*"]
+  }
+}
 
 resource "aws_instance" "web" {
   ami           = "ami-010fae13a16763bb4"
+  #ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
 
   tags = {
@@ -36,4 +46,8 @@ resource "aws_instance" "web" {
     Environment = "Sandbox",
     Owner       = "Narendra"
   }
+}
+
+output "ami_ids" {
+  value = ["${aws_ami_ids.web.*.ids}"]
 }
