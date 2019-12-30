@@ -32,7 +32,7 @@ data "aws_ami_ids" "ubuntu" {
 
   filter {
     name   = "name"
-    name_regex = "Ubuntu Server 18.04 LTS (HVM)"
+    values = ["Ubuntu Server 18.04 LTS (HVM)"]
   }
 }
 
