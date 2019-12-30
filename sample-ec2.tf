@@ -8,12 +8,12 @@ provider "aws" {
 data "aws_ami" "ubuntu" {
   executable_users = ["self"]
   most_recent      = true
-  name_regex       = "^myami-\\d{3}"
+  name_regex       = "^ami-0c64dd618a49aeee8-\\d{3}"
   owners           = ["self"]
 
   filter {
     name   = "name"
-    values = ["myami-*"]
+    values = ["ami-0c64dd618a49aeee8-*"]
   }
 
   filter {
