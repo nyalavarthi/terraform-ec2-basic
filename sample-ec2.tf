@@ -4,7 +4,7 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-
+/*
 data "aws_ami" "amazon-linux-2" {
  most_recent = true
  owners = ["self"]
@@ -19,7 +19,7 @@ data "aws_ami" "amazon-linux-2" {
    values = ["amzn2-ami-hvm*"]
  }
 }
-  
+*/  
 data "aws_ami_ids" "ubuntu-ids" {
   owners = ["self"]
 
@@ -30,8 +30,8 @@ data "aws_ami_ids" "ubuntu-ids" {
 }
 
 resource "aws_instance" "web" {
-  #ami           = "ami-010fae13a16763bb4"
-  ami           = "${data.aws_ami.amazon-linux-2.id}"
+  ami           = "ami-010fae13a16763bb4"
+  #ami           = "${data.aws_ami.amazon-linux-2.id}"
   instance_type = "t2.micro"
 
   tags = {
@@ -45,6 +45,4 @@ output "ami_ids" {
   value = "${data.aws_ami_ids.ubuntu-ids.*.ids}"
 }
 
-output "image_id" {
-    value = "${data.aws_ami.amazon-linux-2.id}"
-}
+
