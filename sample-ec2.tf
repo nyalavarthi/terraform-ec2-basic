@@ -32,6 +32,8 @@ resource "aws_instance" "web" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "HelloWorld"
+    Name        = "NY-test-EC2"
+    Environment = "Sandbox",
+    Owner       = "Narendra"
   }
 }
