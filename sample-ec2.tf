@@ -4,7 +4,7 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-
+/*
 data "aws_ami" "ubuntu" {
   executable_users = ["self"]
   most_recent      = true
@@ -25,10 +25,10 @@ data "aws_ami" "ubuntu" {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-}
+} */
 
 resource "aws_instance" "web" {
-  ami           = "${data.aws_ami.ubuntu.id}"
+  ami           = "ami-0c64dd618a49aeee8"
   instance_type = "t2.micro"
 
   tags = {
