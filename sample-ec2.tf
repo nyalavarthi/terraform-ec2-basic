@@ -4,13 +4,13 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-/*
+
 data "aws_ami" "ubuntu" {
   executable_users = ["self"]
   most_recent      = true
-  name_regex       = "^ami-0c64dd618a49aeee8-\\d{3}"
+  name_regex       = "Ubuntu Server 18.04 LTS (HVM)"
   owners           = ["self"]
-
+/*
   filter {
     name   = "name"
     values = ["ami-0c64dd618a49aeee8-*"]
@@ -19,26 +19,26 @@ data "aws_ami" "ubuntu" {
   filter {
     name   = "root-device-type"
     values = ["ebs"]
-  }
+  } */
 
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-} */
+} 
   
 data "aws_ami_ids" "ubuntu" {
   owners = ["self"]
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/ubuntu*"]
+    name_regex = "Ubuntu Server 18.04 LTS (HVM)"
   }
 }
 
 resource "aws_instance" "web" {
-  ami           = "ami-010fae13a16763bb4"
-  #ami           = "${data.aws_ami.ubuntu.id}"
+  #ami           = "ami-010fae13a16763bb4"
+  ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
 
   tags = {
