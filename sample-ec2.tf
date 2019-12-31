@@ -6,7 +6,7 @@ provider "aws" {
 
 data "aws_ami" "example" {
   most_recent      = true
-  owners           = ["amazon"]
+  owners           = ["816461209558"]
 
   filter {
     name   = "root-device-type"
