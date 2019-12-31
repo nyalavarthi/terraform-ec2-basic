@@ -6,7 +6,7 @@ provider "aws" {
 
 data "aws_ami" "latest-ubuntu" {
 most_recent = true
-owners = ["self"]
+#owners = ["self"]
 
   filter {
       name   = "name"
