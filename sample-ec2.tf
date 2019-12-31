@@ -4,22 +4,21 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-/*
-data "aws_ami" "amazon-linux-2" {
- most_recent = true
- owners = ["self"]
+data "aws_ami" "latest-ubuntu" {
+most_recent = true
+owners = ["self"]
 
- filter {
-   name   = "owner-alias"
-   values = ["amazon"]
- }
+  filter {
+      name   = "name"
+      values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
+  }
 
- filter {
-   name   = "name"
-   values = ["amzn2-ami-hvm*"]
- }
+  filter {
+      name   = "virtualization-type"
+      values = ["hvm"]
+  }
 }
-*/  
+
 data "aws_ami_ids" "ubuntu-ids" {
   owners = ["self"]
 
