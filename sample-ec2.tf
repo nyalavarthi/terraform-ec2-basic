@@ -10,7 +10,7 @@ owners = ["self"]
 
   filter {
       name   = "name"
-      values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-*"]
+      values = ["ubuntu*"]
   }
 
   filter {
