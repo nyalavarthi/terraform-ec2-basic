@@ -5,10 +5,8 @@ provider "aws" {
 }
 
 data "aws_ami" "example" {
-  executable_users = ["self"]
   most_recent      = true
-  owners           = ["self"]
-
+  owners           = ["amazon"]
 
   filter {
     name   = "root-device-type"
