@@ -4,21 +4,22 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-data "aws_ami" "latest-ubuntu" {
-most_recent = true
-owners = ["self"]
+data "aws_ami" "example" {
+  executable_users = ["self"]
+  most_recent      = true
+  owners           = ["self"]
+
 
   filter {
-      name   = "name"
-      values = ["ubuntu*"]
+    name   = "root-device-type"
+    values = ["ebs"]
   }
 
   filter {
-      name   = "virtualization-type"
-      values = ["hvm"]
+    name   = "virtualization-type"
+    values = ["hvm"]
   }
 }
-
 data "aws_ami_ids" "ubuntu-ids" {
   owners = ["self"]
 
@@ -43,6 +44,9 @@ resource "aws_instance" "web" {
 
 output "ami_ids" {
   value = "${data.aws_ami_ids.ubuntu-ids.*.ids}"
+}
+output "amiids" {
+  value = "${data.aws_ami.example.id}"
 }
 
 
