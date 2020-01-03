@@ -36,7 +36,7 @@ resource "aws_instance" "web" {
   tags = {
     Name        = "NY-test-EC2"
     Environment = "Sandbox",
-    
+    Owner       = "Narendra Y"
   }
 }
 
