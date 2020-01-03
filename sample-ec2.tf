@@ -30,7 +30,7 @@ data "aws_ami_ids" "ubuntu-ids" {
 resource "aws_instance" "web" {
   ami           = "ami-010fae13a16763bb4"
   #ami           = "${data.aws_ami.amazon-linux-2.id}"
-  instance_type = "t2.mocro"
+  instance_type = "t2.micro"
   availability_zone = "eu-central-1b"
 
   tags = {
